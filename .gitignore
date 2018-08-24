@@ -2,3 +2,4 @@
 *.gch
 .vscode
 test__flags
+stress
