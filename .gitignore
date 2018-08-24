@@ -1,0 +1,4 @@
+*.o
+*.gch
+.vscode
+test__flags
