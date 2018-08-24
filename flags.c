@@ -53,11 +53,13 @@ bool setFlag(flag_t *pFlag, size_t index, bool val)
 
   if (pFlag == NULL)
   {
+    perror("Passed null ref to set flag.");
     return false;
   }
 
   if (index >= pFlag->length)
   {
+    perror("Invalid index in setflag");
     return false;
   }
 
@@ -69,11 +71,13 @@ bool checkFlag(flag_t *pFlag, size_t index)
 {
   if (pFlag == NULL)
   {
+    perror("Passed null ref to check flag.");
     return false;
   }
 
   if (index >= pFlag->length)
   {
+    perror("Invalid index in check flag");
     return false;
   }
 
@@ -84,6 +88,7 @@ size_t getFlagLength(flag_t *pFlag)
 {
   if (pFlag == NULL)
   {
+    perror("Passed null ref to getFlagLength.");
     return false;
   }
 
