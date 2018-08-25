@@ -68,8 +68,7 @@ void printFlags(flag_t *flag, size_t n)
 	checkFlag(flag, QUIET) == true ? printf("on\n") : printf("off\n");
 	printf("VERBOSE: Flag \"NUMITERATIONS\" is ");
 	checkFlag(flag, NUM) == true ? printf("on\n") : printf("off\n");
-	printf("VERBOSE: Value for flag \"NUMITERATIONS\" is %ld\n",n);
+	printf("VERBOSE: Value for flag \"NUMITERATIONS\" is %ld\n", n);
 	printf("VERBOSE: Flag \"MONTECARLO\" is ");
 	checkFlag(flag, MONTECARLO) == true ? printf("on\n") : printf("off\n");
-
 }
