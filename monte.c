@@ -65,6 +65,7 @@ double monteApproxPiVerbose(long long iterations, double r)
 	piApprox = 4.0 * ratio;
 	printf("Final ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
 	printf("Final pi approximation (ratio * 4) : %lf\n", piApprox);
+	printf("%lf difference\n", ( (MONTE_PI - piApprox)/MONTE_PI ) * 100 );
 	delCircle(&c);
 	return piApprox;
 }
@@ -101,6 +102,7 @@ double monteApproxPi(long long iterations, double r)
 	piApprox = 4.0 * ratio;
 	printf("Final ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
 	printf("Final pi approximation (ratio * 4): %lf\n", piApprox);
+	printf("%lf%% difference\n", ( (MONTE_PI - piApprox)/MONTE_PI ) * 100 );
 	delCircle(&c);
 	return piApprox;
 }
