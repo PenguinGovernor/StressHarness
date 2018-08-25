@@ -2,4 +2,4 @@
 *.gch
 .vscode
 test__flags
-stress
+stresstest__circles
