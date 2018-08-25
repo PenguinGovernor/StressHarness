@@ -85,7 +85,12 @@ bool inCircle(circle_t *circle, point_t *ref)
 		perror("Passed null ref to in cicrle");
 		return false;
 	}
-	return distance(ref, circle->origin) < circle->radius;
+	
+	// return distance(ref, circle->origin) < circle->radius;
+	point_t* o = circle->origin;
+
+	return ( (ref->x - o->x)*(ref->x - o->x) + (ref->y - o->y)*(ref->y - o->y) ) < (circle->radius * circle->radius);
+
 }
 
 point_t *getOrigin(circle_t *c)
