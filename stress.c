@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
 
 		case 'r':
 			setFlag(flags, MONTECARLO_RADIUS, true);
-			monteRadius = atoi(optarg);
+			monteRadius = (double)atof(optarg);
 			break;
 		}
 	}
