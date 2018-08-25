@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 		{
 		case 'n':
 			setFlag(flags, NUM, true);
-			iterations = atoi(optarg);
+			iterations = (long long)atof(optarg);
 			break;
 
 		case 'v':
