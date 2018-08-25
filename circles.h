@@ -11,6 +11,9 @@ typedef struct point_obj point_t;
 point_t *newPoint(double x, double y);
 bool delPoint(point_t **p);
 
+double getXCor(point_t *p);
+double getYCor(point_t *p);
+
 circle_t *newCircle(double x, double y, double r);
 bool delCircle(circle_t **c);
 

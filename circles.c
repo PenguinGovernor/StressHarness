@@ -64,7 +64,6 @@ bool delCircle(circle_t **c)
 	}
 
 	delPoint(&((*c)->origin));
-	*c = NULL;
 	free(*c);
 	*c = NULL;
 	return true;
@@ -109,4 +108,24 @@ double getRadius(circle_t *c)
 	}
 
 	return c->radius;
+}
+
+double getXCor(point_t* p)
+{
+	if (p == NULL)
+	{
+		perror("Passed null ref to get x-cor");
+		return MATH_ERR;
+	}
+	return p->x;
+}
+
+double getYCor(point_t* p)
+{
+	if (p == NULL)
+	{
+		perror("Passed null ref to get x-cor");
+		return MATH_ERR;
+	}
+	return p->y;
 }
