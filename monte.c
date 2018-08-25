@@ -31,7 +31,7 @@ double monteApproxPiVerbose(long long iterations, double r)
 	// Generate random points
 	for (long long i = 0; i < iterations; i += 1)
 	{
-		printf("VERBOSE: Iteration %lld\n", i);
+		printf("VERBOSE: Iteration %lld\n", i + 1);
 		p = genRandomPoint(-1 * r, r, -1 * r, r);
 		// Check if they're in the circle
 
@@ -50,12 +50,12 @@ double monteApproxPiVerbose(long long iterations, double r)
 		ratio = ((double)pointsIn) / ((double)iterations);
 		piApprox = 4.0 * ratio;
 		printf("VERBOSE: Current ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
-		printf("VERBOSE: Current pi approximation: %lf\n", piApprox);
+		printf("VERBOSE: Current pi approximation (ratio * 4) : %lf\n", piApprox);
 		printf("-----------------------\n");
 		delPoint(&p);
 	}
 
-	printf("DONE WITH MONTE CARLO PI APPROXIMATION\n");
+	printf("Finished Monte Carlo pi approximation\n");
 
 	printf("Final Points in circle: %lld\n", pointsIn);
 	printf("Total points: %lld\n", iterations);
@@ -64,7 +64,7 @@ double monteApproxPiVerbose(long long iterations, double r)
 	ratio = ((double)pointsIn) / ((double)iterations);
 	piApprox = 4.0 * ratio;
 	printf("Final ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
-	printf("Final pi approximation: %lf\n", piApprox);
+	printf("Final pi approximation (ratio * 4) : %lf\n", piApprox);
 	delCircle(&c);
 	return piApprox;
 }
@@ -91,7 +91,7 @@ double monteApproxPi(long long iterations, double r)
 		delPoint(&p);
 	}
 
-	printf("DONE WITH MONTE CARLO PI APPROXIMATION\n");
+	printf("Finished Monte Carlo pi approximation\n");
 
 	printf("Final Points in circle: %lld\n", pointsIn);
 	printf("Total points: %lld\n", iterations);
@@ -100,7 +100,7 @@ double monteApproxPi(long long iterations, double r)
 	ratio = ((double)pointsIn) / ((double)iterations);
 	piApprox = 4.0 * ratio;
 	printf("Final ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
-	printf("Final pi approximation: %lf\n", piApprox);
+	printf("Final pi approximation (ratio * 4): %lf\n", piApprox);
 	delCircle(&c);
 	return piApprox;
 }
