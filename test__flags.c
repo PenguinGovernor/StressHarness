@@ -7,7 +7,7 @@ int main()
 {
 	flag_t *flag = newFlag(10);
 	// int testsPassed = 0;
-	bool falseTestFailed = false, trueTestFailed= false;
+	bool falseTestFailed = false, trueTestFailed = false;
 
 	for (size_t i = 0; i < getFlagLength(flag); i += 1)
 	{
@@ -36,7 +36,7 @@ int main()
 		printf("Passed true test\n");
 	}
 
-	if(getFlagLength(flag) == 10)
+	if (getFlagLength(flag) == 10)
 	{
 		printf("Passed length test\n");
 	}
