@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := stress
 CC = gcc
-CFLAGS = -Wall -Wextra -Wpedantic -Werror
+CFLAGS = -Wall -Wextra -Wpedantic -Werror -g
 COMPILE = $(CC) $(CFLAGS)
 
 .PHONY: all clean test
@@ -12,8 +12,8 @@ test: test__flags test__circles
 
 # Binaries 
 
-stress:	stress.o flags.o
-	$(COMPILE) -o stress stress.o flags.o
+stress:	stress.o flags.o monte.o circles.o
+	$(COMPILE) -o stress stress.o flags.o monte.o circles.o -lm
 
 # Testing Bins
 
@@ -31,6 +31,9 @@ test__flag.o:	test__flags.c
 	$(COMPILE) -c test__flags.c
 
 # Lib Objects
+
+monte.o:	monte.c
+	$(COMPILE) -c monte.c
 
 circles.o:	circles.c
 	$(COMPILE) -c circles.c -lm
