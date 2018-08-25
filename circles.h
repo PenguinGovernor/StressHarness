@@ -3,8 +3,6 @@
 
 #include <stdbool.h>
 
-#define X_QUAD_BOUND 100
-#define Y_QUAD_BOUND 100
 #define MATH_ERR -987.401
 
 typedef struct circle_obj circle_t;
