@@ -25,7 +25,7 @@ test__flags: test__flags.o flags.o
 
 # Test Objects
 test__circles.o:	test__circles.c
-	$(COMPILE) -c test__circles.c -lm
+	$(COMPILE) -c test__circles.c
 
 test__flag.o:	test__flags.c
 	$(COMPILE) -c test__flags.c
@@ -36,7 +36,7 @@ monte.o:	monte.c
 	$(COMPILE) -c monte.c
 
 circles.o:	circles.c
-	$(COMPILE) -c circles.c -lm
+	$(COMPILE) -c circles.c
 
 flags.o:	flags.c
 	$(COMPILE) -c flags.c
