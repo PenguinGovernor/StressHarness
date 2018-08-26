@@ -107,3 +107,34 @@ double monteApproxPi(long long iterations, double r)
 	delCircle(&c);
 	return piApprox;
 } 
+
+double quietMonteApprox(long long iterations, double r)
+{
+	// Make a circle with radius 'r'
+	circle_t *c = newCircle(0, 0, r);
+	long long pointsIn = 0;
+	point_t *p;
+	double ratio, piApprox, percentDiff;
+
+	// Generate random points
+	for (long long i = 0; i < iterations; i += 1)
+	{
+		p = genRandomPoint(-1 * r, r, -1 * r, r);
+		// Check if they're in the circle
+
+		if (inCircle(c, p) == true)
+		{
+			pointsIn += 1;
+		}
+
+		delPoint(&p);
+	}
+	
+	// Do monte carlo math -> pi = 4 * (pointIn/iteration)
+	ratio = ((double)pointsIn) / ((double)iterations);
+	piApprox = 4.0 * ratio;
+	percentDiff = ( (MONTE_PI - piApprox)/MONTE_PI ) * 100.0;
+	percentDiff = percentDiff < 0 ? percentDiff * -1 : percentDiff;
+	delCircle(&c);
+	return piApprox;
+} 
