@@ -1,5 +1,5 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#ifndef CIRCLES_H
+#define CIRCLES_H
 
 #include <stdbool.h>
 
