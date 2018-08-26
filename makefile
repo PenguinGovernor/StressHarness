@@ -48,4 +48,4 @@ stress.o:	stress.c
 
 # Util
 clean:
-	rm -f *.gch *.o test__flags test__circles stress 
+	rm -f *.gch *.o test__flags test__circles stress  

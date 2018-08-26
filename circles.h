@@ -23,4 +23,4 @@ bool inCircle(circle_t *circle, point_t *ref);
 point_t *getOrigin(circle_t *c);
 double getRadius(circle_t *c);
 
-#endif
+#endif 

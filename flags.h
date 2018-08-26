@@ -15,3 +15,4 @@ bool checkFlag(flag_t *pFlag, size_t index);
 size_t getFlagLength(flag_t *pFlag);
 
 #endif
+ 

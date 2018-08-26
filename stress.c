@@ -94,3 +94,4 @@ void printFlags(flag_t *flag, long long n, double r)
 	checkFlag(flag, MONTECARLO_RADIUS) == true ? printf("on\n") : printf("off\n");
 	printf("VERBOSE: Value for flag \"MONTECARLO_RADIUS\" is %lf\n", r);
 }
+ 

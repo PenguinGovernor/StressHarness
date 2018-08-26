@@ -105,4 +105,4 @@ double monteApproxPi(long long iterations, double r)
 	printf("%lf%% difference\n", ( (MONTE_PI - piApprox)/MONTE_PI ) * 100 );
 	delCircle(&c);
 	return piApprox;
-}
+} 

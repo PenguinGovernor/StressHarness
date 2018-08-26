@@ -93,4 +93,4 @@ size_t getFlagLength(flag_t *pFlag)
   }
 
   return pFlag->length;
-}
+} 

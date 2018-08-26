@@ -133,4 +133,4 @@ double getYCor(point_t* p)
 		return MATH_ERR;
 	}
 	return p->y;
-}
+} 
