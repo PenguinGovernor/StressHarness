@@ -26,7 +26,7 @@ double monteApproxPiVerbose(long long iterations, double r)
 	circle_t *c = newCircle(0, 0, r);
 	long long pointsIn = 0;
 	point_t *p;
-	double ratio, piApprox;
+	double ratio, piApprox, percentDiff;
 
 	// Generate random points
 	for (long long i = 0; i < iterations; i += 1)
@@ -49,8 +49,11 @@ double monteApproxPiVerbose(long long iterations, double r)
 
 		ratio = ((double)pointsIn) / ((double)iterations);
 		piApprox = 4.0 * ratio;
+		percentDiff = ( (MONTE_PI - piApprox)/MONTE_PI ) * 100.0;
+		percentDiff = percentDiff < 0 ? percentDiff * -1 : percentDiff;
 		printf("VERBOSE: Current ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
 		printf("VERBOSE: Current pi approximation (ratio * 4) : %lf\n", piApprox);
+		printf("VERBOSE: %lf%% difference\n", percentDiff );
 		printf("-----------------------\n");
 		delPoint(&p);
 	}
@@ -59,13 +62,9 @@ double monteApproxPiVerbose(long long iterations, double r)
 
 	printf("Final Points in circle: %lld\n", pointsIn);
 	printf("Total points: %lld\n", iterations);
-
-	// Do monte carlo math -> pi = 4 * (pointIn/iteration)
-	ratio = ((double)pointsIn) / ((double)iterations);
-	piApprox = 4.0 * ratio;
 	printf("Final ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
 	printf("Final pi approximation (ratio * 4) : %lf\n", piApprox);
-	printf("%lf difference\n", ( (MONTE_PI - piApprox)/MONTE_PI ) * 100 );
+	printf("%lf%% difference\n", percentDiff );
 	delCircle(&c);
 	return piApprox;
 }
@@ -76,7 +75,7 @@ double monteApproxPi(long long iterations, double r)
 	circle_t *c = newCircle(0, 0, r);
 	long long pointsIn = 0;
 	point_t *p;
-	double ratio, piApprox;
+	double ratio, piApprox, percentDiff;
 
 	// Generate random points
 	for (long long i = 0; i < iterations; i += 1)
@@ -100,9 +99,11 @@ double monteApproxPi(long long iterations, double r)
 	// Do monte carlo math -> pi = 4 * (pointIn/iteration)
 	ratio = ((double)pointsIn) / ((double)iterations);
 	piApprox = 4.0 * ratio;
+	percentDiff = ( (MONTE_PI - piApprox)/MONTE_PI ) * 100.0;
+	percentDiff = percentDiff < 0 ? percentDiff * -1 : percentDiff;
 	printf("Final ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
 	printf("Final pi approximation (ratio * 4): %lf\n", piApprox);
-	printf("%lf%% difference\n", ( (MONTE_PI - piApprox)/MONTE_PI ) * 100 );
+	printf("%lf%% difference\n",  percentDiff);
 	delCircle(&c);
 	return piApprox;
 } 
