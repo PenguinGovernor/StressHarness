@@ -137,4 +137,4 @@ double quietMonteApprox(long long iterations, double r)
 	percentDiff = percentDiff < 0 ? percentDiff * -1 : percentDiff;
 	delCircle(&c);
 	return piApprox;
-} 
+}
