@@ -50,6 +50,7 @@ Example:
 * ``-r [number]``: The radius size of the circle used for Monte Carlo pi approximation. Omitting this uses the default value of 10
 * ``-m``: Run the Monte Carlo pi appoximation stress test
 * ``-v``: Run ``stress`` in verbose mode
+* ``-q``: Run ``stress`` in quiet mode. Note that flag conflicts with the ``-v`` flag
 
 ### Future Plans
 * [ ] Write a program to visualize the stress on the computer
