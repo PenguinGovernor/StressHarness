@@ -7,7 +7,7 @@
 #include "monte.h"
 
 #ifndef NUM_ARGS
-#define NUM_ARGS 5
+#define NUM_ARGS 6
 #endif
 
 typedef enum
@@ -16,11 +16,13 @@ typedef enum
 	NUM,
 	MONTECARLO,
 	MONTECARLO_RADIUS,
-	QUIET
+	QUIET,
+	PERF_MONTE
 } argflag_t;
 
-void printFlags(flag_t *flag, long long n, double r);
+void printFlags(flag_t *flag, long long n, double r, double errorRate);
 void verifyFlags(flag_t **flags);
+int placesAfterDecimal(char *str);
 
 int main(int argc, char const *argv[])
 {
@@ -29,11 +31,13 @@ int main(int argc, char const *argv[])
 
 	long long iterations = 50;
 	double monteRadius = 10.0;
+	int precise;
+	double targetPrecision;
 
 	flag_t *flags = newFlag(NUM_ARGS);
 	int option;
 
-	while ((option = getopt(argc, (char **)argv, "vmn:r:q")) != -1)
+	while ((option = getopt(argc, (char **)argv, "vmn:r:qM:")) != -1)
 	{
 		switch (option)
 		{
@@ -58,6 +62,17 @@ int main(int argc, char const *argv[])
 		case 'q':
 			setFlag(flags, QUIET, true);
 			break;
+
+		case 'M':
+			setFlag(flags, PERF_MONTE, true);
+			precise = placesAfterDecimal(optarg);
+			precise -= 1;
+			precise += 1;
+			targetPrecision = (double)atof(optarg);
+			targetPrecision += 1;
+			targetPrecision -= 1;
+
+			break;
 		}
 	}
 
@@ -65,7 +80,7 @@ int main(int argc, char const *argv[])
 
 	if (checkFlag(flags, VERBOSE))
 	{
-		printFlags(flags, iterations, monteRadius);
+		printFlags(flags, iterations, monteRadius, targetPrecision);
 	}
 
 	if (checkFlag(flags, MONTECARLO))
@@ -73,7 +88,6 @@ int main(int argc, char const *argv[])
 
 		if (checkFlag(flags, VERBOSE))
 		{
-			printf("Performing Monte Carlo pi approximation\n");
 			monteApproxPiVerbose(iterations, monteRadius);
 		}
 		else if (checkFlag(flags, QUIET))
@@ -86,11 +100,28 @@ int main(int argc, char const *argv[])
 		}
 	}
 
+	if (checkFlag(flags, PERF_MONTE))
+	{
+
+		if (checkFlag(flags, VERBOSE))
+		{
+			vPerfectMonteApproxPi(monteRadius, targetPrecision, precise);
+		}
+		else if (checkFlag(flags, QUIET))
+		{
+			qPerfectMonteApproxPi(monteRadius, targetPrecision, precise);
+		}
+		else
+		{
+			perfectMonteApproxPi(monteRadius, targetPrecision, precise);
+		}
+	}
+
 	delFlag(&flags);
 	return 0;
 }
 
-void printFlags(flag_t *flag, long long n, double r)
+void printFlags(flag_t *flag, long long n, double r, double errorRate)
 {
 	printf("VERBOSE: Flag \"VERBOSE\" is on\n");
 	printf("VERBOSE: Flag \"QUIET\" is off\n");
@@ -102,6 +133,10 @@ void printFlags(flag_t *flag, long long n, double r)
 	printf("VERBOSE: Flag \"MONTECARLO_RADIUS\" is ");
 	checkFlag(flag, MONTECARLO_RADIUS) == true ? printf("on\n") : printf("off\n");
 	printf("VERBOSE: Value for flag \"MONTECARLO_RADIUS\" is %lf\n", r);
+	printf("VERBOSE: Flag \"PERF_MONTE\" is ");
+	checkFlag(flag, PERF_MONTE) == true ? printf("on\n") : printf("off\n");
+	printf("VERBOSE: Value for flag \"PERF_MONTE\" is %lf\n", errorRate);
+	printf("-----------------------\n");
 }
 
 void verifyFlags(flag_t **flags)
@@ -114,4 +149,30 @@ void verifyFlags(flag_t **flags)
 		delFlag(flags);
 		exit(1);
 	}
+}
+
+int placesAfterDecimal(char *str)
+{
+	if (str == NULL)
+	{
+		perror("Passed null ref to places after decimal");
+		return -1;
+	}
+
+	int count = 1;
+	bool seenDecimal = false;
+
+	for (int i = 0; str[i] != '\0'; i += 1)
+	{
+		if (str[i] == '.')
+		{
+			seenDecimal = true;
+		}
+		if (seenDecimal)
+		{
+			count += 1;
+		}
+	}
+
+	return count;
 }
