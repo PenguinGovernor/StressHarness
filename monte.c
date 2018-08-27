@@ -24,13 +24,14 @@ double monteApproxPiVerbose(long long iterations, double r)
 {
 	// Make a circle with radius 'r'
 	circle_t *c = newCircle(0, 0, r);
-	long long pointsIn = 0;
+	long long pointsIn = 0, count = 0;
 	point_t *p;
 	double ratio, piApprox, percentDiff;
 
 	// Generate random points
 	for (long long i = 0; i < iterations; i += 1)
 	{
+		count += 1;
 		printf("VERBOSE: Iteration %lld\n", i + 1);
 		p = genRandomPoint(-1 * r, r, -1 * r, r);
 		// Check if they're in the circle
@@ -47,11 +48,11 @@ double monteApproxPiVerbose(long long iterations, double r)
 			printf("VERBOSE: Point (%lf,%lf) is NOT in the circle with radius %lf centered about (0,0)\n", getXCor(p), getYCor(p), r);
 		}
 
-		ratio = ((double)pointsIn) / ((double)iterations);
+		ratio = ((double)pointsIn) / ((double)count);
 		piApprox = 4.0 * ratio;
 		percentDiff = ( (MONTE_PI - piApprox)/MONTE_PI ) * 100.0;
 		percentDiff = percentDiff < 0 ? percentDiff * -1 : percentDiff;
-		printf("VERBOSE: Current ratio (%lld/%lld): %lf\n", pointsIn, iterations, ratio);
+		printf("VERBOSE: Current ratio (%lld/%lld): %lf\n", pointsIn, count, ratio);
 		printf("VERBOSE: Current pi approximation (ratio * 4) : %lf\n", piApprox);
 		printf("VERBOSE: %lf%% difference\n", percentDiff );
 		printf("-----------------------\n");
