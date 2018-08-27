@@ -35,23 +35,31 @@ valgrind --leak-check=full ./stress
 
 Example:
 ```shell
-# Running montecarlo test
+# Running Monte Carlo test
 ./stress -m
 
-# Running montecarlo test verbosely
+# Running Monte Carlo test verbosely
 ./stress -m -v
 
-# Running montecarlo test verbosely, with circle of radius 12 and 60 iterations
+# Running Monte Carlo test quietly
+./stress -m -q
+
+# Running Monte Carlo test verbosely, with circle of radius 12 and 60 iterations
 ./stress -m -v -r 12 -n 60
+
+# Running stress verbosely with the Monte Carlo test with a circle of radius 12 and 60 iterations, and run the Monte Carlo test until
+# an error rate of 0.001% or less is achieved
+./stress -m -v -r 12 -n 60 -M 0.001
+
 ```
 
 ``stress`` supports the following flags:
 * ``-n [number]``: The number of iterations to run for a test. Omitting this flag uses the default value of 50
-* ``-r [number]``: The radius size of the circle used for Monte Carlo pi approximation. Omitting this uses the default value of 10
-* ``-M [number]``: Run the Monte Carlo pi approximation stress test until an error specificed by the flag is reached (100% - 0.000001%)
+* ``-r [number]``: The radius size of the circle used for Monte Carlo pi approximation. Omitting this flag uses the default value of 10
+* ``-M [number]``: Run the Monte Carlo pi approximation stress test until an error rate of ``number``% or less is reached (Range: 100% - 0.000001%)
 * ``-m``: Run the Monte Carlo pi appoximation stress test
 * ``-v``: Run ``stress`` in verbose mode
-* ``-q``: Run ``stress`` in quiet mode. Note that flag conflicts with the ``-v`` flag
+* ``-q``: Run ``stress`` in quiet mode. Note that this flag conflicts with the ``-v`` flag
 
 ### Future Plans
 * [ ] Write a program to visualize the stress on the computer
